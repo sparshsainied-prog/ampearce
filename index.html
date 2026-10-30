@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A M Pearce | The Cannington Chronicles</title>
+<meta name="description" content="A homepage idea made by Sparsh Saini for A M Pearce. Not their official site.">
+<meta property="og:title" content="A M Pearce | The Cannington Chronicles">
+<meta property="og:description" content="A homepage idea made by Sparsh Saini for A M Pearce. Not their official site.">
+<meta property="og:image" content="https://sparshsainied-prog.github.io/ampearce/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/card-back-s.webp">
+<style>
+:root{
+  --navy:#09141a; --navy-2:#0e1d25; --navy-3:#13262f;
+  --copper:#ff9d57; --copper-soft:#e8a575; --brown:#65442b;
+  --ink:#f3e3d3; --ink-soft:#b9a898;
+  --display:"Cinzel", "Trajan Pro", Georgia, serif; --text:"Cormorant Garamond", Garamond, Georgia, serif;
+}
+*{box-sizing:border-box}
+html{background:var(--navy)}
+body{margin:0;background:var(--navy);color:var(--ink);font-family:var(--text);font-size:1.25rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+.strip{background:#020608;color:var(--ink-soft);font:500 .95rem/1.4 var(--text);text-align:center;padding:.5rem 1rem}
+
+/* running head, as in a printed book: name on the left, where you are on the right */
+.head{position:sticky;top:0;z-index:20;height:50px;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0 clamp(1rem,3vw,2.2rem);background:var(--navy);border-bottom:1px solid rgba(255,157,87,.28)}
+.head .name{font:700 .86rem/1 var(--display);letter-spacing:.22em;text-decoration:none;color:var(--copper);white-space:nowrap}
+.head details{position:relative}
+.head summary{white-space:nowrap;list-style:none;cursor:pointer;font:400 .74rem/1 var(--display);letter-spacing:.18em;color:var(--ink);padding:.6rem 0;display:flex;align-items:center;gap:.55rem}
+.head summary::-webkit-details-marker{display:none}
+.head summary::after{content:"";width:7px;height:7px;border-right:1px solid var(--copper);border-bottom:1px solid var(--copper);transform:translateY(-2px) rotate(45deg)}
+.head details[open] summary::after{transform:translateY(2px) rotate(225deg)}
+.head ol{position:absolute;right:0;top:calc(100% + 6px);margin:0;padding:.9rem 1.3rem;list-style:none;background:var(--navy);border:3px double var(--copper);min-width:15rem}
+.head ol a{display:block;padding:.45rem 0;text-decoration:none;font:400 .78rem/1.2 var(--display);letter-spacing:.16em}
+.head ol a:hover,.head ol a:focus-visible{color:var(--copper)}
+
+/* ---------- hero: the three covers dealt as a tarot spread ---------- */
+.hero{position:relative;height:400vh;background:var(--navy)}
+.stage{position:sticky;top:50px;height:calc(100vh - 50px);overflow:hidden;background:radial-gradient(120% 80% at 50% 45%,var(--navy-2),var(--navy) 70%)}
+.sky{position:absolute;left:50%;top:50%;width:auto;height:96%;max-width:none;transform-origin:50% 50%;will-change:transform;opacity:.42}
+.glint{position:absolute;width:var(--s);height:var(--s);will-change:transform;pointer-events:none;z-index:6}
+.deck{position:absolute;inset:0;perspective:1600px}
+.card{position:absolute;left:0;top:0;width:var(--cw);height:calc(var(--cw) * 1.4545);will-change:transform;transform-style:preserve-3d}
+.card .inner{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.card img{position:absolute;inset:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 18px 40px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.5)}
+.card .back{transform:rotateY(180deg)}
+.open{position:absolute;left:0;right:0;top:4.5%;text-align:center;z-index:7;padding:0 1.2rem;will-change:opacity,transform}
+.open p{margin:0;font:italic 500 clamp(1.5rem,3.4vw,2.4rem)/1.2 var(--text);color:var(--ink)}
+.open p + p{margin-top:.5rem;font:400 clamp(.72rem,1.4vw,.86rem)/1.4 var(--display);letter-spacing:.2em;color:var(--copper)}
+.copy{position:absolute;left:0;right:0;bottom:0;z-index:7;text-align:center;padding:3rem 1.2rem 1.6rem;opacity:0;will-change:opacity,transform;background:radial-gradient(60% 70% at 50% 70%,rgba(9,20,26,.92),rgba(9,20,26,0) 100%)}
+.copy h1{margin:0;font:400 clamp(1.15rem,2.6vw,1.75rem)/1.2 var(--display);letter-spacing:.16em;color:var(--copper)}
+.copy p{margin:.45rem auto 1rem;max-width:34rem;font-size:clamp(1.08rem,1.8vw,1.3rem);line-height:1.35;color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+
+/* buttons in the cover's double copper rule */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.7rem 1.25rem;font:600 .74rem/1 var(--display);letter-spacing:.17em;text-decoration:none;color:var(--copper);border:3px double var(--copper);background:transparent;transition:background-color .2s,color .2s}
+.btn:hover,.btn:focus-visible{background:var(--copper);color:var(--navy)}
+.btn.solid{background:var(--copper);color:var(--navy);border-color:var(--navy);outline:1px solid var(--copper)}
+.btn.solid:hover,.btn.solid:focus-visible{background:var(--copper-soft)}
+
+/* ---------- calm sections ---------- */
+main section{padding:clamp(4rem,9vw,7rem) clamp(1.1rem,5vw,4rem);position:relative}
+.orn{width:220px;margin:0 auto 1.6rem;opacity:.9}
+h2{margin:0 0 1rem;font:400 clamp(1.5rem,3.6vw,2.4rem)/1.15 var(--display);letter-spacing:.12em;color:var(--copper);text-align:center}
+.lede{max-width:38rem;margin:0 auto 3rem;text-align:center;color:var(--ink-soft);font-style:italic}
+
+.books{max-width:62rem;margin:0 auto}
+.book{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:clamp(1.4rem,4vw,3.2rem);align-items:start;padding:2.6rem 0;border-top:1px solid rgba(255,157,87,.22)}
+.book:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,15rem)}
+.book:nth-child(even) .cv{order:2}
+.book .cv img{width:100%;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.book .no{font:400 .74rem/1 var(--display);letter-spacing:.2em;color:var(--ink-soft);margin:0 0 .6rem}
+.book h3{margin:0 0 .5rem;font:400 clamp(1.35rem,2.8vw,1.85rem)/1.15 var(--display);letter-spacing:.08em;color:var(--ink)}
+.book .tag{margin:0 0 1rem;font-style:italic;color:var(--copper-soft);font-size:1.3rem}
+.book p{margin:0 0 1rem;max-width:36rem}
+.book .btns{justify-content:flex-start;margin-top:1.4rem}
+.next{text-align:center;margin:2.4rem auto 0;font:400 .8rem/1.4 var(--display);letter-spacing:.2em;color:var(--copper);border-top:1px solid rgba(255,157,87,.22);padding-top:2rem}
+
+.short{background:var(--navy-2)}
+.short .wrap{max-width:60rem;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.short h2{text-align:left}
+.short p{margin:0 0 1rem}
+.short blockquote{margin:1.6rem 0 0;padding:0 0 0 1.2rem;border-left:3px double var(--copper);font-style:italic;font-size:1.4rem;line-height:1.35;color:var(--ink)}
+.table{border:3px double var(--copper);padding:1.6rem 1.5rem;text-align:center}
+.table .when{font:400 .74rem/1.4 var(--display);letter-spacing:.2em;color:var(--copper);margin:0 0 .8rem}
+.table h3{margin:0 0 .6rem;font:400 1.3rem/1.25 var(--display);letter-spacing:.06em}
+.table p{margin:0 0 .5rem;color:var(--ink-soft)}
+
+.about .wrap{max-width:60rem;margin:0 auto;display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.about h2{text-align:left}
+.about p{margin:0 0 1rem}
+.about figure{margin:0}
+.about figcaption{margin-top:.6rem;font-style:italic;font-size:1rem;color:var(--ink-soft)}
+.about .where{font:400 .74rem/1.4 var(--display);letter-spacing:.2em;color:var(--copper)}
+
+.questions{background:var(--navy-2);padding-bottom:clamp(5rem,10vw,8rem)}
+.qs{max-width:42rem;margin:0 auto}
+.qs details{border-top:1px solid rgba(255,157,87,.25);padding:1.1rem 0}
+.qs details:last-child{border-bottom:1px solid rgba(255,157,87,.25)}
+.qs summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem;font:400 1.02rem/1.35 var(--display);letter-spacing:.06em;color:var(--ink)}
+.qs summary::-webkit-details-marker{display:none}
+.qs summary::after{content:"+";color:var(--copper);font-size:1.3rem;line-height:1}
+.qs details[open] summary::after{content:"\2212"}
+.qs details p{margin:.8rem 0 0;color:var(--ink-soft)}
+.write{text-align:center;margin-top:3rem}
+.write p{margin:0 0 1.2rem;font-style:italic;color:var(--ink-soft)}
+
+footer{padding:2.2rem 1.2rem 2.6rem;text-align:center;font-size:1rem;color:var(--ink-soft);border-top:1px solid rgba(255,157,87,.2)}
+
+@media (max-width:760px){
+  body{font-size:1.18rem}
+  .head .name{font-size:.78rem;letter-spacing:.18em}
+  .head summary{font-size:.66rem;letter-spacing:.14em}
+  .book,.book:nth-child(even){grid-template-columns:1fr;gap:1.4rem}
+  .book:nth-child(even) .cv{order:0}
+  .book .cv{max-width:11rem}
+  .short .wrap,.about .wrap{grid-template-columns:1fr}
+  .about figure{max-width:20rem}
+}
+@media (prefers-reduced-motion:reduce){ .btn{transition:none} }
+</style>
+</head>
+<body>
+<div class="strip">A homepage idea made by Sparsh Saini for A M Pearce. Not their official site.</div>
+
+<header class="head">
+  <a class="name" href="#top">A M PEARCE</a>
+  <details id="contents">
+    <summary id="where">THE CANNINGTON CHRONICLES</summary>
+    <ol>
+      <li><a href="#books">The three books</a></li>
+      <li><a href="#short">Short on time</a></li>
+      <li><a href="#about">About me</a></li>
+      <li><a href="#questions">Questions</a></li>
+    </ol>
+  </details>
+</header>
+
+<div class="hero" id="top">
+  <div class="stage" id="stage">
+    <img class="sky" id="sky" src="img/sky.webp" alt="" width="1621" height="820">
+    <div class="open" id="open">
+      <p>One night. One game. The future at stake.</p>
+      <p>Cannington's witch has a job to do</p>
+    </div>
+    <div class="deck" id="deck">
+      <div class="card" id="c2" style="z-index:1"><div class="inner"><img class="face" src="img/card-cauldrons-s.webp" srcset="img/card-cauldrons-s.webp 440w, img/card-cauldrons.webp 720w" sizes="(max-width:760px) 40vw, 30vh" alt="Cauldrons and Crossroads cover, The Cannington Chronicles book 3"><img class="back" src="img/card-back-s.webp" srcset="img/card-back-s.webp 440w, img/card-back.webp 720w" sizes="(max-width:760px) 40vw, 30vh" alt=""></div></div>
+      <div class="card" id="c1" style="z-index:2"><div class="inner"><img class="face" src="img/card-glamour-s.webp" srcset="img/card-glamour-s.webp 440w, img/card-glamour.webp 720w" sizes="(max-width:760px) 40vw, 30vh" alt="Glamour and Ghost cover, The Cannington Chronicles book 2"><img class="back" src="img/card-back-s.webp" srcset="img/card-back-s.webp 440w, img/card-back.webp 720w" sizes="(max-width:760px) 40vw, 30vh" alt=""></div></div>
+      <div class="card" id="c0" style="z-index:3"><div class="inner"><img class="face" src="img/card-shadow-s.webp" srcset="img/card-shadow-s.webp 440w, img/card-shadow.webp 720w" sizes="(max-width:760px) 40vw, 30vh" alt="Shadow and Spell cover, The Cannington Chronicles book 1"><img class="back" src="img/card-back-s.webp" srcset="img/card-back-s.webp 440w, img/card-back.webp 720w" sizes="(max-width:760px) 40vw, 30vh" alt=""></div></div>
+    </div>
+    <img class="glint" src="img/star.webp" alt="" style="--s:46px;left:8%;top:22%">
+    <img class="glint" src="img/star.webp" alt="" style="--s:30px;left:86%;top:30%">
+    <img class="glint" src="img/star.webp" alt="" style="--s:58px;left:78%;top:78%">
+    <img class="glint" src="img/star.webp" alt="" style="--s:26px;left:16%;top:70%">
+    <div class="copy" id="copy">
+      <h1>The Cannington Chronicles</h1>
+      <p>A young witch raised by two feline familiars, fae politics and old folklore, in a quiet Somerset village.</p>
+      <div class="btns"><a class="btn solid" href="https://www.am-pearce.com/store/p/shadow-and-spell">Read book one</a><a class="btn" href="#books">The three books</a></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="books" data-head="THE THREE BOOKS">
+    <img class="orn" src="img/orn.webp" alt="" width="300" height="48">
+    <h2>The three books</h2>
+    <p class="lede">Cosy village atmosphere, dark folklore, occasional eldritch weirdness and giant magical cats. Each one is a novella, read in an evening.</p>
+    <div class="books">
+      <article class="book">
+        <div class="cv"><img src="img/cover-shadow.webp" alt="Shadow and Spell cover" width="600" height="943" loading="lazy"></div>
+        <div class="rest"><div>
+          <p class="no">BOOK 1</p>
+          <h3>Shadow and Spell</h3>
+          <p class="tag">One night. One game. The future at stake.</p>
+          <p>Once a foundling, Gwen now lives a quiet life in the idyllic English countryside, raised by two loving mothers. But a local café once known for its average coffee and disappointing pastries is suddenly luring customers from all over the country.</p>
+          <p>When Gwen investigates, she finds a new barista who's taking more than just customers' money.</p>
+          <div class="btns"><a class="btn solid" href="https://www.am-pearce.com/store/p/shadow-and-spell">Ebook, $1.99</a><a class="btn" href="https://mybook.to/ShadowAndSpell">Other stores</a></div>
+        </div></div>
+      </article>
+      <article class="book">
+        <div class="cv"><img src="img/cover-glamour.webp" alt="Glamour and Ghost cover" width="600" height="943" loading="lazy"></div>
+        <div class="rest"><div>
+          <p class="no">BOOK 2</p>
+          <h3>Glamour and Ghost</h3>
+          <p class="tag">A missing phone. A thwarted spell.</p>
+          <p>With Aodren defeated, Gwen goes back to her quiet life. Then her childhood friend loses her phone, and a simple seeking spell unravels into something far stranger.</p>
+          <p>Samhain is coming, and with it the thinning veil between this life and the next.</p>
+          <div class="btns"><a class="btn solid" href="https://www.am-pearce.com/store/p/glamour-and-ghost">Ebook, $1.99</a><a class="btn" href="https://mybook.to/GlamourAndGhost">Other stores</a></div>
+        </div></div>
+      </article>
+      <article class="book">
+        <div class="cv"><img src="img/cover-cauldrons.webp" alt="Cauldrons and Crossroads cover" width="600" height="943" loading="lazy"></div>
+        <div class="rest"><div>
+          <p class="no">BOOK 3</p>
+          <h3>Cauldrons and Crossroads</h3>
+          <p class="tag">One feast. One holiday. Two wildly different adventures.</p>
+          <p>As the shortest day of the year ends, Gwen accepts an invitation few mortals would survive intact: a night of revelry with the fae in Elfhame.</p>
+          <p>Meanwhile Nest and Terwynn take a long overdue holiday to the sunken city of Kêr-Ys. What could possibly go wrong?</p>
+          <div class="btns"><a class="btn solid" href="https://www.am-pearce.com/store/p/cauldrons-and-crossroads">Ebook, $1.99</a><a class="btn" href="https://mybook.to/CauldronsandCrossroads">Other stores</a></div>
+        </div></div>
+      </article>
+    </div>
+    <p class="next">BOOK 4 COMING 2027</p>
+  </section>
+
+  <section class="short" id="short" data-head="SHORT ON TIME">
+    <div class="wrap">
+      <div>
+        <h2>Fantasy for readers short on time</h2>
+        <p>Shadow and Spell started as an assignment for my Masters in Writing: design a story that can be read between message notifications, calls, waiting rooms and cooking dinner.</p>
+        <p>I kept seeing readers say they want fantasy but forget chapter one before they finish. So the Cannington Chronicles are short on purpose. Novels are coming too.</p>
+        <blockquote>A quick, satisfying read for people living busy lives.</blockquote>
+      </div>
+      <div class="table">
+        <p class="when">SATURDAY 24 OCTOBER 2026</p>
+        <h3>Adelaide Indie Author Book Festival</h3>
+        <p>Plant 4 Bowden, where I had a table this spring.</p>
+        <p>The next market or signing goes up on Instagram first.</p>
+        <div class="btns" style="margin-top:1.2rem"><a class="btn" href="https://www.instagram.com/a.m.pearce/">@a.m.pearce</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about" data-head="ABOUT ME">
+    <div class="wrap">
+      <figure>
+        <img src="img/flatlay.webp" alt="Cauldrons and Crossroads in paperback among candles, ivy and coins" width="1100" height="825" loading="lazy">
+        <figcaption>Book three, photographed at home.</figcaption>
+      </figure>
+      <div>
+        <h2>About me</h2>
+        <p>I'm an Australian fantasy author on Kaurna Country in Adelaide, where I live with my partner and three exceedingly opinionated cats.</p>
+        <p>I studied writing and sociolinguistics at the University of South Australia, then did a Master's in Writing at Macquarie. Before fiction I worked as an editor, writing coach and policy writer, jobs that taught me everyone has a story worth telling.</p>
+        <p>I write from folklore, distinct landscapes and the forgotten histories under modern life. When I'm not writing I'm freediving, curled up with a book and at least one cat, or walking the coastline.</p>
+        <p class="where">KAURNA COUNTRY, ADELAIDE</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="questions" id="questions" data-head="QUESTIONS">
+    <img class="orn" src="img/orn.webp" alt="" width="300" height="48">
+    <h2>Questions readers ask</h2>
+    <div class="qs">
+      <details open><summary>Do the cats talk?</summary><p>Of course. I am a writer of taste, after all (though they're technically not cats).</p></details>
+      <details><summary>Are the fae from real folklore?</summary><p>Yes. The supernatural characters, places and events all come from regional folklore. Most of it is Somerset, but the fae realm is as multicultural as ours, so you'll meet figures from the rest of England, Wales, Ireland, Scotland and Brittany too.</p></details>
+      <details><summary>Is Cannington a real place?</summary><p>Yes and no. Cannington is real, but the village in the books is a mix of places I lived in and visited in England, mainly Bridgwater, Weston-super-Mare, Minehead and Woolacombe.</p></details>
+      <details><summary>Is the series for young readers?</summary><p>Technically yes, at this stage, but I wrote it with adult readers in mind.</p></details>
+    </div>
+    <div class="write">
+      <p>Anything else, write to me.</p>
+      <a class="btn" href="mailto:contact@am-pearce.com">contact@am-pearce.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>A mockup made by Sparsh Saini for A M Pearce. Not affiliated, not live.</footer>
+
+<script>
+(function(){
+  var hero=document.getElementById('top'), stage=document.getElementById('stage'), sky=document.getElementById('sky'),
+      open=document.getElementById('open'), copy=document.getElementById('copy'), where=document.getElementById('where'),
+      cards=[0,1,2].map(function(i){var c=document.getElementById('c'+i);return {el:c,inner:c.querySelector('.inner')};}),
+      glints=[].slice.call(document.querySelectorAll('.glint'));
+  var names=['BOOK 1: SHADOW AND SPELL','BOOK 2: GLAMOUR AND GHOST','BOOK 3: CAULDRONS AND CROSSROADS'];
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W,H,wide,cw,ch,deck,slots,top0,span,skyW,inHero=true,lastHead='';
+  function clamp(v){return v<0?0:v>1?1:v}
+  function seg(p,a,b){return clamp((p-a)/(b-a))}
+  function io(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  function out(t){return 1-Math.pow(1-t,3)}
+  function measure(){
+    W=stage.clientWidth; H=stage.clientHeight; wide=W>=761;
+    if(wide){ ch=Math.min(H*0.5,W*0.3*1.4545); cw=ch/1.4545; var gap=Math.min(48,W*0.03), cy=H*0.43;
+      slots=[[W/2-cw-gap,cy,-3],[W/2,cy,0],[W/2+cw+gap,cy,3]]; deck=[W/2,H*0.5];
+    } else { cw=Math.min(W*0.42,H*0.3/1.4545); ch=cw*1.4545; var dx=W*0.22;
+      slots=[[W/2-dx,H*0.19,-4],[W/2+dx,H*0.355,3],[W/2-dx,H*0.52,-2]]; deck=[W/2,H*0.44];
+    }
+    cards.forEach(function(c){c.el.style.setProperty('--cw',cw+'px');});
+    skyW=sky.offsetWidth;
+    top0=hero.getBoundingClientRect().top+scrollY-50; span=hero.offsetHeight-H;
+  }
+  function frame(p){
+    // the sky (the covers' own constellations) drifts up slowly behind
+    var s=1.12-0.12*p; sky.style.transform='translate(-50%,-50%) translateY('+(H*0.05-H*0.12*p).toFixed(1)+'px) scale('+s.toFixed(4)+')';
+    // deal: one face-down deck, then each card to its place in the spread
+    var flipping=-1;
+    cards.forEach(function(c,i){
+      var d=io(seg(p,0.10+i*0.09,0.30+i*0.08));
+      var dk=1.18-0.18*d; // deck sits a little nearer the camera
+      var off=(2-i)*3*(1-d); // the stacked edge of the deck
+      var x=deck[0]+(slots[i][0]-deck[0])*d+off, y=deck[1]+(slots[i][1]-deck[1])*d-off - Math.sin(d*Math.PI)*H*0.06;
+      var r=(i-1)*2.5*(1-d)+slots[i][2]*d + Math.sin(d*Math.PI)*(i-1)*8;
+      // turn: each card flips face up in reading order
+      var f=io(seg(p,0.46+i*0.12,0.58+i*0.12));
+      if(f>0&&f<1) flipping=i; else if(f>=1) flipping=Math.max(flipping,i+0.5);
+      var lift=1+Math.sin(f*Math.PI)*0.07;
+      c.el.style.transform='translate3d('+(x-cw/2).toFixed(1)+'px,'+(y-ch/2).toFixed(1)+'px,0) rotate('+r.toFixed(2)+'deg) scale('+(dk*lift).toFixed(4)+')';
+      c.inner.style.transform='rotateY('+(180-180*f).toFixed(2)+'deg)';
+    });
+    // near glints pass the camera faster than the sky
+    glints.forEach(function(g,i){var k=[1,1.6,1.25,0.8][i];
+      g.style.transform='translate3d(0,'+(H*(0.18-0.7*p*k)).toFixed(1)+'px,0) rotate('+(p*40*k).toFixed(1)+'deg)';});
+    var o=1-seg(p,0.04,0.16); open.style.opacity=o.toFixed(3); open.style.transform='translateY('+(-20*(1-o)).toFixed(1)+'px)';
+    var c=out(seg(p,0.86,0.97)); copy.style.opacity=c.toFixed(3); copy.style.pointerEvents=c<0.5?'none':'auto';
+    copy.style.transform='translateY('+(18*(1-c)).toFixed(1)+'px)';
+    if(inHero){ var h=flipping<0?(wide?'THE CANNINGTON CHRONICLES':'THE CHRONICLES'):(wide?names[Math.floor(flipping)]:names[Math.floor(flipping)].replace(/^BOOK \d: /,'')); setHead(h); }
+  }
+  function setHead(t){ if(t!==lastHead){ where.textContent=t; lastHead=t; } }
+  function pos(){ return reduce?1:clamp((scrollY-top0)/span); }
+  var ticking=false;
+  function onScroll(){ if(!ticking){ticking=true; requestAnimationFrame(function(){ticking=false; frame(pos());});} }
+  // running head outside the hero: the section you're reading
+  var secs=[].slice.call(document.querySelectorAll('main section'));
+  if('IntersectionObserver' in window){
+    var ob=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ inHero=false; setHead(e.target.getAttribute('data-head')); } }); },{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){ob.observe(s);});
+    new IntersectionObserver(function(es){ if(es[0].isIntersecting){ inHero=true; frame(pos()); } },{rootMargin:'-45% 0px -50% 0px'}).observe(hero);
+  }
+  document.querySelectorAll('#contents a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('contents').open=false;});});
+  measure(); frame(pos());
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',function(){measure(); frame(pos());});
+  addEventListener('load',function(){measure(); frame(pos());});
+})();
+</script>
+</body>
+</html>
